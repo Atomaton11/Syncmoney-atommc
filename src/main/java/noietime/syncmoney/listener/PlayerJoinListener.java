@@ -41,6 +41,14 @@ public final class PlayerJoinListener implements Listener {
         var player = event.getPlayer();
         UUID uuid = player.getUniqueId();
         String name = player.getName();
+        
+        Syncmoney sm = (Syncmoney) plugin;
+
+          if (sm.getRedisManager() != null) {
+            sm.getRedisManager().addOnlinePlayer(
+              sm.getSyncmoneyConfig().getServerName(),
+              name);
+          }
 
         nameResolver.cacheName(name, uuid);
 
